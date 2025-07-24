@@ -6,12 +6,17 @@ import { environment } from '../../../../environments/environment'
 })
 export class SignupService {
   private apiUrl = environment.apiUrl;
-  constructor(private http:HttpClient) { }
-  
-  register(payload:any)  {
-    return this.http.post(`${this.apiUrl}/signup`, payload);
-}
+  constructor(private http: HttpClient) { }
 
+  register(payload: any) {
+    return this.http.post(`${this.apiUrl}/signup`, payload);
+  }
+
+  verifyOtp = (userId: string, otp: string) =>
+    this.http.post(`${this.apiUrl}/verifyotp`, { userId, otp });
+
+  resendOtp = (userId: string) =>
+    this.http.post(`${this.apiUrl}/resendotp`, { userId });
 
 
 }

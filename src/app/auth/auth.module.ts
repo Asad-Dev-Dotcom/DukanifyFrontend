@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LogInComponent } from './Login/log-in/log-in.component';
-import { VerifyEmailComponent } from './Login/verify-email/verify-email.component';
+import { VerifyEmailComponent } from './Signup/verify-email/verify-email.component';
 import { ForgetPasswordComponent } from './Login/forget-password/forget-password.component';
 import { ChangePasswordComponent } from './Login/change-password/change-password.component';
 import { LogInWithGoogleComponent } from './Login/log-in-with-google/log-in-with-google.component';
