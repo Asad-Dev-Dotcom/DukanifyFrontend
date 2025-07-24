@@ -1,6 +1,7 @@
 import { Component, NgZone } from '@angular/core';
 import { AuthResponse } from '../../model/auth-response.model';
 import { SignupService } from '../../service/Signup-Service/signup.service';
+import { Router } from '@angular/router';
 
 declare const google: any;
 @Component({
@@ -10,7 +11,7 @@ declare const google: any;
 })
 export class LogInWithGoogleComponent {
 
-   constructor(private ngZone: NgZone, private authService: SignupService) {}
+   constructor(private ngZone: NgZone, private authService: SignupService, private router: Router) {}
 
   ngOnInit(): void {
     google.accounts.id.initialize({
@@ -31,6 +32,7 @@ export class LogInWithGoogleComponent {
       this.authService.authenticateGoogleToken(token, 'signin').subscribe({
         next: (res: AuthResponse) => {
           console.log('Login successful', res);
+          this.router.navigate(['/'])
         },
         error: err => {
           alert('Login failed: ' + (err.error?.message || err.message));

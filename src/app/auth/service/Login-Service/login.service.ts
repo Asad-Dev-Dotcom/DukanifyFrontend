@@ -21,19 +21,19 @@ export class LoginService {
 
     verifyOTP(id : any, otp : string){
     const payload = { id, otp }
-    return this.http.post(`${this.apiUrl}/verifyOTP`, payload)
+    return this.http.post(`${this.apiUrl}/verifyloginOTP`, payload)
   }
 
   resendOTP(id : string){
     console.log('resend otp===', id)
-    return this.http.post(`${this.apiUrl}/resendOTP`, { userId : id })
+    return this.http.post(`${this.apiUrl}/resendloginOTP`, { userId : id })
   }
 
   forgotPassword(email: string) {
-    return this.http.post(`${this.apiUrl}/users/forgot-password`, { email });
+    return this.http.post(`${this.apiUrl}/forgot-password`, { email });
   }
 
-  resetPassword(email: string, newPassword: string) {
-  return this.http.post(`${this.apiUrl}/users/reset-password`, { email, newPassword });
+  resetPassword(id: string, newPassword: string) {
+  return this.http.post(`${this.apiUrl}/reset-password`, { id, newPassword });
 }
 }

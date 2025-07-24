@@ -37,13 +37,15 @@ export class SignUpComponent {
 
   register(): void {
     if (this.signupForm.valid) {
+      console.log('form data=====', this.signupForm.value)
       this.authService.register(this.signupForm.value).subscribe({
         next: (res: any) => {
           this.snackBar.open('Signup Successfull', 'Close', { duration : 3000 })
           this.signupForm.reset();
           this.showPassword = false;
           this.showConfirmPassword = false;
-          // this.router.navigate['/verify-otp']
+          localStorage.setItem('id', JSON.stringify(res.userId))
+          this.router.navigate(['/verifyEmail'])
           
         },
         error: (err) => this.snackBar.open('Signup Failed', 'Close', { duration : 3000 })

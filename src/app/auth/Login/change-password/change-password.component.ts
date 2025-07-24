@@ -63,24 +63,27 @@ export class ChangePasswordComponent implements OnInit {
 
   onSubmit() {
     if (this.resetForm.valid) {
+      const id = JSON.parse(localStorage.getItem('id') || '')
 
       console.log('reset password====', this.email, this.password?.value)
 
-      if (this.email) {
-        this.changepass.resetPassword(this.email, this.password?.value).subscribe(
-          (res : any) => {
+      if (id) {
+        this.changepass.resetPassword(id, this.password?.value).subscribe(
+          {
+            next: (res : any) => {
             if (res.token) {
             localStorage.setItem('token', res.token);
           }
             this.snackBar.open('Password updated successfully', 'Close', {
               duration: 3000
             });
-            this.router.navigate(['/landing-page']);
+            this.router.navigate(['/']);
           },
-          (err) => {
+          error: (err) => {
             this.snackBar.open('Error updating password', 'Close', {
               duration: 3000
             });
+          }
           }
         );
       }

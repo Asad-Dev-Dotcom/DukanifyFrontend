@@ -13,7 +13,7 @@ export class VerifyEmailComponent {
  otpForm: FormGroup;
   error: string | null = null;
   loading = false;
-  userId : string = '1234';
+  userId : string = JSON.parse(localStorage.getItem('id') || '')
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +26,7 @@ export class VerifyEmailComponent {
       // this.router.navigate(['/auth/register']);
       console.log('Register route!')
     }
-    this.userId = state?.['userId'];
+    // this.userId = state?.['userId'];
 
     this.otpForm = this.fb.group({
       otp: ['', [Validators.required, Validators.pattern(/^\d{6}$/)]]
@@ -40,11 +40,12 @@ export class VerifyEmailComponent {
       this.error = null;
 
       const { otp } = this.otpForm.value;
+      console.log('userid', this.userId)
       this.authService.verifyOtp(this.userId, otp).subscribe({
         next: () => {
           this.loading = false;
           this.snackBar.open('OTP Verify Successfull', 'Close', { duration : 3000 })
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/']);
         },
         error: (err: any) => {
           this.loading = false;
