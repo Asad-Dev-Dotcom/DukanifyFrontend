@@ -37,7 +37,7 @@ export class LogInComponent {
           this.snackBar.open('Login SuccessFull', 'Close', { duration : 3000 })
           if (res.token) {
             localStorage.setItem('token', JSON.stringify(res.token))
-            this.router.navigate(['landingpage']);
+            this.router.navigate(['/']);
           }
         },
         error: (err: any) => {

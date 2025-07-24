@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { QueryList, ViewChildren, ElementRef } from '@angular/core';
 import { LoginService } from '../../service/Login-Service/login.service';
+import { Router } from '@angular/router';
 
 
 
@@ -19,14 +20,14 @@ otpForm!: FormGroup;
   isResendDisabled: boolean = false;
   cooldownTimer: any;
   formSubmitted = false;
-  comingOTP : string = '1234'
+  comingOTP : string = JSON.parse(localStorage.getItem('otp') || '')
   verifyOTP : boolean = false
-  userId : string = '12345678'
+  userId : string = JSON.parse(localStorage.getItem('id') || '')
 
 
   @ViewChildren('otpInput') otpInputs!: QueryList<ElementRef>;
 
-  constructor(private fb: FormBuilder, private service : LoginService) {}
+  constructor(private fb: FormBuilder, private service : LoginService, private router: Router) {}
 
   ngOnInit(): void {
    
@@ -52,8 +53,11 @@ onResendOtp(): void {
   
 
   this.service.resendOTP(this.userId).subscribe({
-    next : res => {
+    next : (res:any) => {
       console.log('OTP Resend')
+      console.log("Hello--->",res)
+      localStorage.removeItem('otp');
+      localStorage.setItem('otp', JSON.stringify(res.token))
       this.startCooldown();
     },
     error : err => {
@@ -84,15 +88,20 @@ startCooldown(): void {
 
   if (this.otpForm.valid) {
     const enteredOtp = this.otpForm.get('otp')?.value;
+    this.comingOTP = JSON.parse(localStorage.getItem('otp') || '')
+    
 
-    if (enteredOtp !== this.comingOTP) {
+    if (String(enteredOtp) !== this.comingOTP) {
+      console.log(this.comingOTP)
       this.verifyOTP = true;
       console.log('Invalid OTP:', enteredOtp);
     } else {
       console.log('Correct OTP:', enteredOtp);
+      console.log('userid=====', this.userId)
       this.service.verifyOTP(this.userId, enteredOtp).subscribe({
         next : res => {
           console.log('successfully verify')
+          this.router.navigate(['/changePassword'])
         },
         error : err => {
           console.log('Verify failled')

@@ -31,6 +31,9 @@ export class ForgetPasswordComponent implements OnInit {
             this.snackBar.open(res.message || 'Verification code sent to your email', 'Close', {
               duration: 3000
             });
+            localStorage.setItem('otp', JSON.stringify(res.token))
+            localStorage.setItem('id', JSON.stringify(res.userId))
+            this.router.navigate(['/verifyLoginEmail'])
           },
           error: (err) => {
             this.snackBar.open(err.error.message || 'Email not found', 'Close', {

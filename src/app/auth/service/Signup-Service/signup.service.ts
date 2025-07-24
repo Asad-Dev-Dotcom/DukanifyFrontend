@@ -22,7 +22,7 @@ export class SignupService {
 
   authenticateGoogleToken(token: string, action: 'signin' | 'signup'): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
-      `${this.apiUrl}/api/auth/google`,
+      `${this.apiUrl}/google`,
       { token, action },
       { withCredentials: true }
     );
