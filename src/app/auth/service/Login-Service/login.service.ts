@@ -28,4 +28,12 @@ export class LoginService {
     console.log('resend otp===', id)
     return this.http.post(`${this.apiUrl}/resendOTP`, { userId : id })
   }
+
+  forgotPassword(email: string) {
+    return this.http.post(`${this.apiUrl}/users/forgot-password`, { email });
+  }
+
+  resetPassword(email: string, newPassword: string) {
+  return this.http.post(`${this.apiUrl}/users/reset-password`, { email, newPassword });
+}
 }
