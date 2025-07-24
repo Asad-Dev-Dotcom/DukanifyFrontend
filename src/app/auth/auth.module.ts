@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SocialAuthService, SocialAuthServiceConfig, } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
 
 
 
@@ -30,6 +32,24 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
   imports: [
     CommonModule,
     AuthRoutingModule, HttpClientModule, ReactiveFormsModule, FormsModule, NgOtpInputModule, MatSnackBarModule
+  ],
+  exports: [ 
+    LogInWithGoogleComponent
+  ],
+  providers: [
+    SocialAuthService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('516658923816-8o2kahm0t86eavcpad2l5a7jh6u4aklh.apps.googleusercontent.com'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ]
 })
 export class AuthModule { }
