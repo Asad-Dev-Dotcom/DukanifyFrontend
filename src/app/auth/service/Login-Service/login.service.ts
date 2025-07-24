@@ -15,6 +15,17 @@ export class LoginService {
   loginUser(email : string, password : string){
     const payload = { email, password }
     console.log('payload in login user', payload)
-    return this.http.post(`${this.apiUrl}/auth/login`, payload)
+    return this.http.post(`${this.apiUrl}/login`, payload)
+  }
+
+
+    verifyOTP(id : any, otp : string){
+    const payload = { id, otp }
+    return this.http.post(`${this.apiUrl}/verifyOTP`, payload)
+  }
+
+  resendOTP(id : string){
+    console.log('resend otp===', id)
+    return this.http.post(`${this.apiUrl}/resendOTP`, { userId : id })
   }
 }

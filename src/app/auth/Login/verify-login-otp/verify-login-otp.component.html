@@ -1,0 +1,33 @@
+<form [formGroup]="otpForm" (ngSubmit)="onSubmit()" class="otp-form">
+
+  <h1>Verify Password Code</h1>
+
+  <p>We emailed you a four-digit code to</p>
+  <p>{{ userEmail }}</p>
+  <p>Enter the code below to reset your password.</p>
+
+  <ng-otp-input formControlName="otp" [config]="config"></ng-otp-input>
+
+<div *ngIf="formSubmitted && (otpForm.get('otp')?.invalid || verifyOTP)">
+  <small *ngIf="otpForm.get('otp')?.errors?.['required']" class="error-msg">
+    OTP is required
+  </small>
+  <small *ngIf="verifyOTP" class="error-msg">
+    Invalid OTP
+  </small>
+</div>
+
+  <div class="actions">
+    <button type="submit">Verify</button>
+    <button
+  type="button"
+  class="resend-btn"
+  (click)="onResendOtp()"
+  [disabled]="isResendDisabled"
+>
+  {{ isResendDisabled ? 'Resend OTP in ' + resendCooldown + 's' : 'Resend OTP' }}
+</button>
+
+  </div>
+
+</form>

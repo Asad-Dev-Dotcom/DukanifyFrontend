@@ -16,6 +16,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SocialAuthService, SocialAuthServiceConfig, } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { VerifyLoginOTPComponent } from './Login/verify-login-otp/verify-login-otp.component';
 
 
 
@@ -27,7 +28,8 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     ChangePasswordComponent,
     LogInWithGoogleComponent,
     SignUpComponent,
-    ContinueWithGoogleComponent
+    ContinueWithGoogleComponent,
+    VerifyLoginOTPComponent
   ],
   imports: [
     CommonModule,

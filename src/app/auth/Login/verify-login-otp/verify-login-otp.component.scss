@@ -1,0 +1,90 @@
+.otp-form {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+
+  h1 {
+    margin-bottom: 16px;
+    font-size: 24px;
+    color: #333;
+  }
+
+  p {
+    margin: 8px 0;
+    color: #555;
+    font-size: 14px;
+  }
+
+  ng-otp-input {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+
+    ::ng-deep .otp-input {
+      width: 48px !important;
+      height: 48px !important;
+      margin: 0 6px;
+      font-size: 22px;
+      text-align: center;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  button[type='submit'],
+  .resend-btn {
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  button[type='submit'] {
+    background-color: #4a90e2;
+    border: none;
+    color: white;
+
+    &:hover {
+      background-color: #357abd;
+    }
+  }
+
+  .resend-btn {
+    background-color: transparent;
+    color: #4a90e2;
+    border: 2px solid #4a90e2;
+
+    &:hover {
+      background-color: #e6f0fb;
+    }
+  }
+}
+
+
+.error-msg {
+  color: red;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
