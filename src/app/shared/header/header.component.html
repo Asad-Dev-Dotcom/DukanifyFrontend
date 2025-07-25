@@ -1,0 +1,89 @@
+<div class="announcement-bar">
+  <p>Welcome to Dukanify</p>
+</div>
+
+<header class="main-header">
+  <div class="container">
+
+    <div class="mobile-header">
+      <button class="menu-btn" aria-label="Open Menu" (click)="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a routerLink="/" class="logo-text">ShopSphere</a>
+      <div class="mobile-icons">
+        <a routerLink="/cart"><i class="fas fa-shopping-cart"></i></a>
+        <a routerLink="/login"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
+
+    <div class="desktop-header">
+      <a routerLink="/" class="logo-img">
+        <img src="../../../assets/Adobe Express - file (1).png" alt="Logo">
+      </a>
+
+      <div class="dropdown">
+        <button class="dropdown-toggle">
+          <i class="fas fa-bars"></i>
+          <span>Categories</span>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a href="#">Dairy</a>
+          <a href="#">Pantry Staples</a>
+          <a href="#">Baked Goods</a>
+          <a href="#">Beverages</a>
+          <a href="#">Snacks</a>
+          <a href="#">Sauces</a>
+        </div>
+      </div>
+
+      <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()" class="search-box">
+        <input type="text" formControlName="query" placeholder="Search for products...">
+        <button type="submit"  aria-label="Search" ><i class="fas fa-search"></i></button>
+      </form>
+
+      <div class="right-icons">
+
+        <div class="dropdown">
+          <button class="dropdown-toggle">
+            <i class="fas fa-store-alt"></i>
+            <span>Become a Seller</span>
+          </button>
+          <div class="dropdown-menu">
+            <h4>Start Selling Today</h4>
+            <p>Join thousands of sellers on our platform</p>
+            <button class="seller-btn">Sign Up as Seller</button>
+          </div>
+        </div>
+
+        <a routerLink="/cart" class="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count">{{CartCount}}</span>
+        </a>
+
+        <div class="dropdown">
+          <button class="dropdown-toggle">
+            <i class="fas fa-user-circle"></i>
+            <span>Login</span>
+          </button>
+          <div class="dropdown-menu">
+            <a routerLink="/login">Sign In</a>
+            <a routerLink="/signup">Create Account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isMobileMenuOpen" class="mobile-menu">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearchSubmit()">
+      <input type="text" formControlName="query" placeholder="Search...">
+    </form>
+    <a href="#"><i class="fas fa-store-alt"></i> Become a Seller</a>
+    <a href="#">Dairy</a>
+    <a href="#">Baked Goods</a>
+    <a href="#">Snacks</a>
+    <a routerLink="/login">Sign In</a>
+    <a routerLink="/signup">Create Account</a>
+  </div>
+</header>

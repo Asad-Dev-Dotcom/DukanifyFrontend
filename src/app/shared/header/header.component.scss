@@ -1,0 +1,255 @@
+/* Base Styles & Utilities (No Change Needed Here) */
+// Define Sass variables for your colors first
+$primary-color: #007bff; /* Blue */
+$secondary-color: #6c757d; /* Gray */
+$accent-color: #28a745; /* Green */
+$text-color: #343a40; /* Dark Gray */
+$light-bg: #f8f9fa; /* Light Gray */
+$white: #ffffff;
+$border-color: #dee2e6;
+
+// Now use these Sass variables to define your CSS variables in :root
+:root {
+  --primary-color: #{$primary-color};
+  --secondary-color: #{$secondary-color};
+  --accent-color: #{$accent-color};
+  --text-color: #{$text-color};
+  --light-bg: #{$light-bg};
+  --white: #{$white};
+  --border-color: #{$border-color};
+  --shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --border-radius: 5px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--text-color);
+  background-color: var(--light-bg);
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  color: var(--text-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Announcement Bar (No Change) */
+.announcement-bar {
+  background-color: var(--primary-color);
+  color: var(--white);
+  text-align: center;
+  padding: 8px 0;
+  font-size: 0.9em;
+  p {
+    margin: 0;
+  }
+}
+
+/* Main Header */
+.main-header {
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .container {
+    // Always display as a row, suitable for desktop
+    display: flex;
+    flex-direction: row; // Changed from column
+    align-items: center;
+  }
+}
+
+/* Mobile Header - Hide it permanently */
+.mobile-header {
+  display: none; // Always hidden
+}
+
+/* Desktop Header - Always display it */
+.desktop-header {
+  display: flex; // Always visible and flex
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+
+  // Remove the media query that was hiding it
+  // @media (min-width: 992px) {
+  //   display: flex;
+  // }
+
+  .logo-img {
+    img {
+      height: 40px; /* Adjust as needed */
+      width: auto;
+    }
+  }
+
+  /* Dropdown Base Styles (No Change) */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+
+    .dropdown-toggle {
+      background-color: var(--white);
+      color: var(--text-color);
+      padding: 10px 15px;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1em;
+      transition: all 0.2s ease-in-out;
+
+      i {
+        font-size: 1.1em;
+      }
+
+      &:hover {
+        background-color: var(--light-bg);
+        color: var(--primary-color);
+      }
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: var(--white);
+      min-width: 180px;
+      box-shadow: var(--shadow);
+      border-radius: var(--border-radius);
+      z-index: 1;
+      padding: 10px 0;
+      top: 100%;
+      left: 0;
+
+      a {
+        color: var(--text-color);
+        padding: 10px 15px;
+        display: block;
+        &:hover {
+          background-color: var(--light-bg);
+          color: var(--primary-color);
+        }
+      }
+
+      h4 {
+        margin: 5px 15px 0;
+        color: var(--primary-color);
+      }
+
+      p {
+        margin: 0 15px 10px;
+        font-size: 0.85em;
+        color: var(--secondary-color);
+      }
+
+      .seller-btn {
+        display: block;
+        width: calc(100% - 30px);
+        margin: 10px 15px;
+        padding: 8px 15px;
+        background-color: $accent-color;
+        color: var(--white);
+        border-radius: var(--border-radius);
+        text-align: center;
+        &:hover {
+          background-color: darken($accent-color, 10%);
+        }
+      }
+    }
+
+    &:hover .dropdown-menu {
+      display: block;
+    }
+  }
+
+  /* Search Bar (No Change) */
+  .search-box {
+    display: flex;
+    flex-grow: 1;
+    margin: 0 20px;
+
+    input[type="text"] {
+      flex-grow: 1;
+      padding: 10px 15px;
+      border: 1px solid var(--border-color);
+      border-right: none;
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+      font-size: 1em;
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+      }
+    }
+
+    button[type="submit"] {
+      background-color: $primary-color;
+      color: var(--white);
+      padding: 10px 15px;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease-in-out;
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  /* Right Icons (No Change) */
+  .right-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .cart-icon {
+      position: relative;
+      font-size: 1.4em;
+      color: var(--text-color);
+      &:hover {
+        color: var(--primary-color);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--accent-color);
+        color: var(--white);
+        font-size: 0.7em;
+        border-radius: 50%;
+        padding: 3px 6px;
+        min-width: 15px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+/* Mobile Dropdown Menu - Hide it permanently */
+.mobile-menu {
+  display: none; // Always hidden
+}
