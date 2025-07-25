@@ -1,0 +1,113 @@
+$primary-color: #e4002b;
+$text-color: #000000;
+$background-color: #ffffff;
+$border-radius: 12px;
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: $background-color;
+  padding: 20px;
+
+  .auth-card {
+    background-color: $background-color;
+    border: 1px solid $primary-color;
+    padding: 30px;
+    border-radius: $border-radius;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+    h2 {
+      color: $text-color;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    p {
+      color: $text-color;
+      text-align: center;
+    }
+
+    form {
+      .form-group {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-weight: 500;
+          color: $text-color;
+          margin-bottom: 6px;
+        }
+
+        input[type='text'] {
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          font-size: 16px;
+          outline: none;
+
+          &.invalid {
+            border-color: $primary-color;
+          }
+        }
+
+        .validation-error {
+          color: $primary-color;
+          font-size: 13px;
+          margin-top: 4px;
+        }
+      }
+
+      button[type='submit'] {
+        margin-top: 20px;
+        width: 100%;
+        background-color: $primary-color;
+        color: $background-color;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+
+      .text-center {
+        text-align: center;
+        margin-top: 15px;
+        color: $text-color;
+
+        a {
+          color: $primary-color;
+          text-decoration: none;
+          font-weight: 500;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+
+          &.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .error-message {
+        color: $primary-color;
+        text-align: center;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+    }
+  }
+}
