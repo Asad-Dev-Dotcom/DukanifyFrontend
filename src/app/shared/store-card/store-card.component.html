@@ -1,0 +1,42 @@
+<div class="store-card" *ngIf="store?.isVerified">
+
+  <div class="store-banner">
+    <img [src]="store.banner" alt="Store Banner">
+  </div>
+
+
+  <div class="store-content">
+    <div class="store-logo-name">
+      <img class="store-logo" [src]="store.logo" alt="Store Logo" />
+      <div class="store-name">
+        <h3>{{ store.name }}
+          <i class="fa-solid fa-circle-check verified-icon" title="Verified Store"></i>
+        </h3>
+        <p><i class="fa-solid fa-location-dot"></i> {{ store.address }}</p>
+      </div>
+    </div>
+
+ 
+    <p class="store-description">
+      <i class="fa-solid fa-align-left"></i> {{ store.description }}
+    </p>
+
+    <div class="store-details">
+      <p><i class="fa-solid fa-phone"></i> {{ store.cell }}</p>
+      <p>
+        <i class="fa-solid fa-clock"></i>
+        <span [ngClass]="store.isOpen ? 'open' : 'closed'">
+          {{ store.isOpen ? 'Open Now' : 'Closed' }}
+        </span>
+      </p>
+      <p>
+        <i class="fa-solid fa-certificate"></i>
+        <a [href]="store.certificateUrl" target="_blank">View Certificate</a>
+      </p>
+    </div>
+
+    <div class="store-btn">
+      <button><i class="fa-solid fa-store"></i> Visit Store</button>
+    </div>
+  </div>
+</div>

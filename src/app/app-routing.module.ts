@@ -18,7 +18,7 @@ const routes: Routes = [
   { path : 'verifyLoginEmail', component : VerifyLoginOTPComponent },
   { path : 'forgetPassword', component : ForgetPasswordComponent },
   { path : 'changePassword', component : ChangePasswordComponent },
-  { path : '', component : HomeComponent }
+  { path : '', component : HomeComponent}
 
 ];
 
